@@ -1,8 +1,8 @@
-# Wellbeing Web Application
+# HappyHabits Wellbeing Web Application
 
-Wellbeing is fundamental to human health and overall happiness. Having a strong and well-adapted sense of wellbeing can help people help overcome difficulties and achieve their goals. It also has important social benefits improving educational attainment, economic productivity, social and family relationships, social cohesion and overall quality of life.
+Happy Habits recognizes that wellbeing is fundamental to human health and overall happiness. Developing a strong and well-adapted sense of wellbeing can help individuals overcome difficulties and achieve their goals. It also has important social benefits, improving educational attainment, economic productivity, social and family relationships, social cohesion, and overall quality of life.
 
-Eating a healthy balanced diet, getting enough sleep and exercise, and creating healthy habits can help individuals improve their wellbeing.
+The Happy Habits web application is designed to help users improve their wellbeing by providing information on nutrition, fitness, and healthy lifestyle choices. Eating a healthy balanced diet, getting enough sleep and exercise, and creating healthy habits are all essential for individuals to improve their wellbeing. Happy Habits allows users to set their own personal goals and track their progress, empowering them to take control of their own wellbeing journey.
 
 ## Project Overview
 
