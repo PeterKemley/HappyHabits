@@ -1,5 +1,5 @@
-const guestbookDAO = require('../models/fitModel');
-const db = new guestbookDAO();
+const fitnessDAO = require('../models/fitModel');
+const db = new fitnessDAO();
 
 db.init();
 

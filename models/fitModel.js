@@ -1,5 +1,5 @@
 const nedb = require('nedb');
-class GuestBook {
+class Fitness {
     constructor(dbFilePath) {
         if (dbFilePath) {
             this.db = new nedb({ filename: dbFilePath, autoload: true });
@@ -87,4 +87,4 @@ class GuestBook {
 
 }
 //make the module visible outside
-module.exports = GuestBook;
+module.exports = Fitness;
