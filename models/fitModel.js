@@ -1,5 +1,5 @@
 const nedb = require('nedb');
-class GuestBook {
+class Fitness {
     constructor(dbFilePath) {
         if (dbFilePath) {
             this.db = new nedb({ filename: dbFilePath, autoload: true });
@@ -10,14 +10,17 @@ class GuestBook {
     }
     init() {
         this.db.insert({
-            subject: 'I liked the exhibition',
-            contents: 'nice',
-            published: '2020-02-16',
-            author: 'Peter'
+            goalName: 'Lose 20kg',
+            description: 'Noice',
+            startDate: '2020-02-16',
+            endDate: '2025-02-16',
+            complete: "true",
+            published: "2020-01-16"
         });
         //for later debugging
         console.log('db entry Peter inserted');
         }
+    
     //a function to return all entries from the database
     getAllEntries() {
         //return a Promise object, which can be resolved or rejected
@@ -36,55 +39,27 @@ class GuestBook {
                 }
             })
         })
-    }  
-    getPetersEntries() {
-        //return a Promise object, which can be resolved or rejected
-        return new Promise((resolve, reject) => {
-            //find(author:'Peter) retrieves the data,
-            //with error first callback function, err=error, entries=data
-            this.db.find({ author: 'Peter' }, function(err, entries) {
-                //if error occurs reject Promise
-                if (err) {
-                    reject(err);
-                //if no error resolve the promise and return the data
-                } else {
-                    resolve(entries);
-                    //to see what the returned data looks like
-                    console.log('getPetersEntries() returns: ', entries);
-                 }
-            })
-        })
-    }
-    addEntry(author, subject, contents) {
-        var entry = {
-                author: author,
-                subject: subject,
-                contents: contents,
+    } 
+    
+    addEntry(goalName, description, startDate, endDate, complete) {
+        var entry = { 
+                goalName: goalName,
+                description: description,
+                startDate: startDate,
+                endDate: endDate,
+                complete: complete,
                 published: new Date().toISOString().split('T')[0]
                 }
         console.log('entry created', entry);
         this.db.insert(entry, function(err, doc) {
                 if (err) {
-                    console.log('Error inserting document', subject);
+                    console.log('Error inserting Goal', goalName);
                     } else {
-                    console.log('document inserted into the database', doc);
+                    console.log('Goal inserted into the database', doc);
                 }
         }) 
      }
-    
-     getEntriesByUser(authorName) {
-        return new Promise((resolve, reject) => {
-            this.db.find({ 'author': authorName }, function(err, entries) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(entries);
-            console.log('getEntriesByUser returns: ', entries);
-        }
-    })
-})
-}
 
 }
 //make the module visible outside
-module.exports = GuestBook;
+module.exports = Fitness;
