@@ -4,7 +4,8 @@
   "description": "WAD2 Coursework by Peter Kemley (S2003254)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index",
+    "startnode": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Kemley",
