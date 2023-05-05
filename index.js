@@ -142,10 +142,11 @@ function checkNotAuthenticated(req, res, next) {
 
 app.use('/', router); 
 
-// Starting the server and listening on port 3000
-app.listen(3000, () => {
-    console.log('Server started on port 3000. Ctrl+C to stop running.');
-})
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}. Ctrl+C to stop running.`);
+});
 
 /*
 In summary, this is an index.js file for an Express application that serves static files 
