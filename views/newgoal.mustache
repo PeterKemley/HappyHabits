@@ -1,8 +1,9 @@
 <html>
 <head>
 {{>header}}
+<link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body class="body">
 <div class="container">
 <h2>What is your new goal?</h2>
     <form method="post" role="form">
@@ -13,6 +14,15 @@
         <div class="form-group">
             <label for="description">Goal Description</label>
             <textarea class="form-control" id="description" name="description" placeholder="Enter a description for your goal" row="8" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category">
+                <option value="" disabled selected>-- Select a category --</option>
+                <option value="Nutrition">Nutrition</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Lifestyle">Lifestyle</option>
+            </select>
         </div>
         <div class="form-group">
                 <label for="contents">Goal Start Date</label>

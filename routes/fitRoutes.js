@@ -8,6 +8,15 @@ const controller = require('../controllers/fitController.js');
 // Route for the landing page
 router.get("/", controller.landing_page);
 
+// Route for the login page
+router.get('/login', function(req, res) {
+    res.render('login', { title: 'Login' });
+})
+
+router.get('/register', function(req, res) {
+    res.render('register', { title: 'Register' });
+})
+
 // Route for redirecting to the about.html page
 router.get('/about', function(req, res) {
     res.render('about', { title: 'About' });
@@ -16,6 +25,15 @@ router.get('/about', function(req, res) {
 // Route for the new entry page
 router.get('/new', controller.new_goals);
 router.post('/new', controller.post_new_entry);
+
+// Route for the fitness goals page
+router.get('/fitness', controller.fitness_page);
+router.get('/lifestyle', controller.lifestyle_page);
+router.get('/nutrition', controller.nutrition_page);
+
+// Route for the Completed Goals page
+router.get('/completed-goals', controller.completed_goals);
+router.post('/completed-goals', controller.completed_goals);
 
 // Route for handling 404 errors
 router.use(function(req, res) {
