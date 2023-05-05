@@ -10,6 +10,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const controller = require('./controllers/fitController.js');
 
 const initializePassport = require('./passport-config')
 initializePassport(
@@ -51,28 +52,52 @@ app.use(methodOverride('_method'))
 // Importing the fitRoutes module and using it as middleware
 const router = require('./routes/fitRoutes');
 
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render('entries', { name: req.user.name })
-  })
+// GET '/' - renders the 'entries' view if the user is authenticated, otherwise redirects to the login page
+  app.get('/', checkAuthenticated, (req, res) => {
+      res.render('entries', { name: req.user.name })
+    })
 
+// Conditional Logic for authenticating views (IF LOGGED IN Render home_auth ELSE Render home_notauth)
+// app.get('/', (req, res) => {
+//   if (req.isAuthenticated()) {
+//       res.render('entries', { name: req.user.name })
+//   } else {
+//       res.render('homepage')// MAKE A HOMEPAGE
+//   }
+// })
+
+app.get('/fitness', (req, res) => {
+  if (req.isAuthenticated()) {
+      res.render('fitness', controller.fitness_page)
+  } else {
+      res.render('register', { message: 'Error Authenticating User. Please Register to access this feature.' })
+  }
+})
+
+
+// GET '/login' - renders the 'login' view if the user is not authenticated, otherwise redirects to the home page
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login')
 })
 
+// POST '/login' - authenticates the user using Passport.js and redirects to the 'index' page if successful, otherwise redirects to the login page with a flash message
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/index',
     failureRedirect: '/login',
     failureFlash: true
 }))
 
+// GET '/index' - renders the 'index' view if the user is authenticated, otherwise redirects to the login page
 app.get('/index', checkAuthenticated, (req, res) => {
     res.render('index', { name: req.user.name })
   })
 
+// GET '/register' - renders the 'register' view if the user is not authenticated, otherwise redirects to the home page
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register')
 })
 
+// POST '/register' - creates a new user in the 'users' array and redirects to the login page if successful, otherwise redirects to the register page
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -83,11 +108,14 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
         password: hashedPassword
       })
       res.redirect('/login')
-    } catch {
-      res.redirect('/register')
+    } catch (err){
+      console.log('Registration Failed')
+      console.error(err)
+      res.render('register', { message: 'Error registering user. Please try again.' })
     }
 })
 
+// DELETE '/logout' - logs the user out and redirects to the login page
 app.delete("/logout", (req, res, next) => {
     req.logOut((err) => {
       if (err) {
@@ -96,6 +124,7 @@ app.delete("/logout", (req, res, next) => {
       res.redirect("/login");
     });
 });
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next()

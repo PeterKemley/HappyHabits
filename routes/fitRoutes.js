@@ -34,7 +34,7 @@ router.post('/new', controller.post_new_entry);
 // router.get('/update', controller.view_goal);
 
 // Route for the fitness goals page
-router.get('/fitness', controller.fitness_page);
+// router.get('/fitness', controller.fitness_page);
 router.get('/lifestyle', controller.lifestyle_page);
 router.get('/nutrition', controller.nutrition_page);
 
