@@ -11,7 +11,10 @@
         </div>
         {{#entries}}
             <div>
-                <h2>Goal: {{goalName}} <a href="/" class="btn btn-primary">Edit</a> <a href="/" class="btn btn-primary">Remove</a></h2>
+                <h2>Goal: {{goalName}} 
+                    <a href="/update" class="btn btn-primary">Edit</a> 
+                    <a href="/delete" class="btn btn-primary">Remove</a>
+                </h2>
                 <h5>
                     Description:<br/>
                     {{description}}

@@ -9,11 +9,11 @@ const db = new fitnessDAO();
 
 db.init();
 
-exports.landing_page = function(req, res) {
-    db.getAllEntries()
+exports.allgoals_page = function(req, res) {
+    db.getAllGoals()
         .then((list) => {
             res.render('entries', {
-                'title': 'Happy Habits',
+                'title': 'Your Goals',
                 'entries': list
             });
             console.log('promise resolved');
@@ -96,3 +96,25 @@ exports.post_new_entry = function(req, res) {
     db.addEntry(req.body.goalName, req.body.description, req.body.category, req.body.startDate, req.body.endDate, req.body.complete);
     res.redirect('/');
 }
+
+exports.post_new_entry = function(req, res) {
+    console.log('processing post-new_entry controller');
+    if (!req.body.goalName) {
+        console.log('IN IF STATEMENT');
+    	response.status(400).send("Entries must have an Goal Name.");
+    	return;
+    }
+    console.log('BEFORE DB ENTRY');
+    db.addEntry(req.body.goalName, req.body.description, req.body.category, req.body.startDate, req.body.endDate, req.body.complete);
+    res.redirect('/');
+}
+// exports.view_goal = function(req, res) {
+//     db.findOne({ _id: req.params.goalName })
+//     .then((list) => {
+//         res.render('updategoal', {
+//             'title': 'Update Goals',
+//             'entries': list
+//         });
+//         console.log('promise resolved');
+//     })
+// };

@@ -1,3 +1,10 @@
+/*
+    The Model represents the data and the business logic of the application.
+    It is responsible for managing the data, retrieving and storing data,
+    and applying the business rules and logic to the data. The Model does not 
+    know anything about the View or the Controller, and it does not interact directly with them.
+*/
+
 const nedb = require('nedb');
 class Fitness {
     constructor(dbFilePath) {
@@ -68,7 +75,7 @@ class Fitness {
     }
     
     //a function to return all entries from the database
-    getAllEntries() {
+    getAllGoals() {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
             //use the find() function of the database to get the data,
@@ -182,7 +189,6 @@ class Fitness {
                 }
         }) 
      }
-
 }
 //make the module visible outside
 module.exports = Fitness;
