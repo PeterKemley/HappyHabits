@@ -1,15 +1,16 @@
 <html>
+    <style>
+        head {align-items: center;}
+        h1 {text-align: center;}
+        p {text-align: center;}
+        div {text-align: center;}
+    </style>
     <head>
         {{>header}}
         <form align: right; action="/logout?_method=DELETE" method="POST">
           <button type="submit">Log Out</button>
         </form>
     </head>
-    <style>
-        h1 {text-align: center;}
-        p {text-align: center;}
-        div {text-align: center;}
-    </style>
     <body class="body">
         <div id="alert-message">{{alertMessage}}</div>
         <h1>Hello {{name}}, Welcome to the Index</h1>
