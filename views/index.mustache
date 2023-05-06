@@ -3,35 +3,10 @@
         {{>header}}
     </head>
     <body class="body">
-        <h1>Hello {{name}}, Welcome to the {{title}}</h1>
+        <div id="alert-message">{{alertMessage}}</div>
+        <h1>Hello {{name}}, Welcome to the Index</h1>
         <form action="/logout?_method=DELETE" method="POST">
           <button type="submit">Log Out</button>
         </form>
-        <div class="text-right">
-            <a href="/new" class="btn btn-primary">
-                Create New Goal
-            </a>
-        </div>
-        {{#entries}}
-            <div>
-                <h2>Goal: {{goalName}} 
-                    <a href="/update" class="btn btn-primary">Edit</a> 
-                    <a href="/delete" class="btn btn-primary">Remove</a>
-                </h2>
-                <h5>
-                    Description:<br/>
-                    {{description}}
-                <p> Goal Category: {{category}} </p>    
-                <p> Goal Created on: {{published}} </p>
-                <p> Goal Started on: {{startDate}} </p>
-                <p> Goal Ending on: {{endDate}} </p>
-                <p> Has the Goal been Completed: {{complete}} </p>
-            </h5>
-            </div>
-            <hr>
-        {{/entries}}
-        {{^entries}}
-            No entries yet.
-        {{/entries}}
     </body>
 </html>

@@ -52,11 +52,11 @@ app.use(methodOverride('_method'))
 // Importing the fitRoutes module and using it as middleware
 const router = require('./routes/fitRoutes');
 
-// GET '/' - renders the 'entries' view if the user is authenticated, otherwise redirects to the login page
-  app.get('/', checkAuthenticated, (req, res) => {
-      res.render('entries', { name: req.user.name })
-    })
-
+// GET '/home' - renders the 'index' view if the user is authenticated, otherwise redirects to the login page
+app.get('/home', checkAuthenticated, (req, res) => {
+  res.render('index', { name: req.user.name })
+})
+ //{ alertMessage: 'You need to login' }
 // Conditional Logic for authenticating views (IF LOGGED IN Render home_auth ELSE Render home_notauth)
 // app.get('/', (req, res) => {
 //   if (req.isAuthenticated()) {
@@ -66,15 +66,6 @@ const router = require('./routes/fitRoutes');
 //   }
 // })
 
-app.get('/fitness', (req, res) => {
-  if (req.isAuthenticated()) {
-      res.render('fitness', controller.fitness_page)
-  } else {
-      res.render('register', { message: 'Error Authenticating User. Please Register to access this feature.' })
-  }
-})
-
-
 // GET '/login' - renders the 'login' view if the user is not authenticated, otherwise redirects to the home page
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login')
@@ -82,15 +73,10 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 
 // POST '/login' - authenticates the user using Passport.js and redirects to the 'index' page if successful, otherwise redirects to the login page with a flash message
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/index',
+    successRedirect: '/home',
     failureRedirect: '/login',
     failureFlash: true
 }))
-
-// GET '/index' - renders the 'index' view if the user is authenticated, otherwise redirects to the login page
-app.get('/index', checkAuthenticated, (req, res) => {
-    res.render('index', { name: req.user.name })
-  })
 
 // GET '/register' - renders the 'register' view if the user is not authenticated, otherwise redirects to the home page
 app.get('/register', checkNotAuthenticated, (req, res) => {
@@ -129,7 +115,7 @@ function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next()
     }
-  
+    req.flash('error', 'Please login to access this page.');
     res.redirect('/login')
 }
   

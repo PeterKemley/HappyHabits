@@ -9,10 +9,16 @@ const db = new fitnessDAO();
 
 db.init();
 
+exports.index_page = function(req, res) {
+    res.render('index', {
+    'title': 'Index'
+    })
+}
+
 exports.allgoals_page = function(req, res) {
     db.getAllGoals()
         .then((list) => {
-            res.render('entries', {
+            res.render('allgoals', {
                 'title': 'Your Goals',
                 'entries': list
             });
@@ -68,8 +74,22 @@ exports.nutrition_page = function(req, res) {
 exports.completed_goals = function(req, res) {
     db.getCompletedGoals()
         .then((list) => {
-            res.render('entries', {
+            res.render('allgoals', {
                 'title': 'Completed Goals',
+                'entries': list
+            });
+            console.log('promise resolved');
+        })
+        .catch((err) => {
+            console.log('promise rejected', err);
+        })
+}
+
+exports.notcompleted_goals = function(req, res) {
+    db.getNotCompletedGoals()
+        .then((list) => {
+            res.render('allgoals', {
+                'title': 'Not Completed Goals',
                 'entries': list
             });
             console.log('promise resolved');
@@ -94,20 +114,9 @@ exports.post_new_entry = function(req, res) {
     }
     console.log('BEFORE DB ENTRY');
     db.addEntry(req.body.goalName, req.body.description, req.body.category, req.body.startDate, req.body.endDate, req.body.complete);
-    res.redirect('/');
+    res.redirect('/allgoals');
 }
 
-exports.post_new_entry = function(req, res) {
-    console.log('processing post-new_entry controller');
-    if (!req.body.goalName) {
-        console.log('IN IF STATEMENT');
-    	response.status(400).send("Entries must have an Goal Name.");
-    	return;
-    }
-    console.log('BEFORE DB ENTRY');
-    db.addEntry(req.body.goalName, req.body.description, req.body.category, req.body.startDate, req.body.endDate, req.body.complete);
-    res.redirect('/');
-}
 // exports.view_goal = function(req, res) {
 //     db.findOne({ _id: req.params.goalName })
 //     .then((list) => {

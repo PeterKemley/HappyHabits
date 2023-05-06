@@ -32,7 +32,7 @@ class Fitness {
                 category: "Lifestyle",
                 startDate: '2020-02-16',
                 endDate: '2025-02-16',
-                complete: "Completed",
+                complete: "Not Yet Completed",
                 published: "2020-01-16"
             },
             {
@@ -59,7 +59,7 @@ class Fitness {
                 category: "Fitness",
                 startDate: '2020-02-16',
                 endDate: '2025-02-16',
-                complete: "Completed",
+                complete: "Not Yet Completed",
                 published: "2020-01-16"
             },
             {
@@ -68,7 +68,7 @@ class Fitness {
                 category: "Nutrition",
                 startDate: '2020-02-16',
                 endDate: '2025-02-16',
-                complete: "Completed",
+                complete: "Not Yet Completed",
                 published: "2020-01-16"
             }
         ]);
@@ -169,7 +169,26 @@ class Fitness {
             })
         })
     }
-    
+
+    getNotCompletedGoals() {
+        //return a Promise object, which can be resolved or rejected
+        return new Promise((resolve, reject) => {
+            //use the find() function of the database to get the data,
+            //error first callback function, err for error, entries for data
+            this.db.find({complete: "Not Yet Completed"}, function(err, entries) {
+                //if error occurs reject Promise
+                if (err) {
+                    reject(err);
+                //if no error resolve the promise & return the data
+                } else {
+                    resolve(entries);
+                    //to see what the returned data looks like
+                    console.log('function all() returns: ', entries);
+                }
+            })
+        })
+    }
+
     addEntry(goalName, description, category, startDate, endDate, complete) {
         var entry = { 
                 goalName: goalName,
@@ -189,6 +208,25 @@ class Fitness {
                 }
         }) 
      }
+
+     deleteGoal(_id) {
+        //return a Promise object, which can be resolved or rejected
+        return new Promise((resolve, reject) => {
+          //use the remove() function of the database to delete the data,
+          //error first callback function, err for error, numRemoved for number of records deleted
+          this.db.remove({ _id: id }, function(err, numRemoved) {
+            //if error occurs reject Promise
+            if (err) {
+              reject(err);
+            //if no error resolve the promise & return the data
+            } else {
+              resolve(numRemoved);
+              //to see what the returned data looks like
+              console.log('function remove() returns: ', numRemoved);
+            }
+          })
+        })
+      }
 }
 //make the module visible outside
 module.exports = Fitness;
