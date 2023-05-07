@@ -1,3 +1,9 @@
+/*
+  This code block checks if the current environment is not "production" and if so,
+  loads environment variables from a .env file into process.env using the dotenv package.
+  It is commonly used in development environments to avoid hardcoding sensitive information such as API keys etc.
+  In our case its for a Session Key
+*/
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
@@ -12,7 +18,9 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 const controller = require('./controllers/fitController.js');
 
+// Import the initializePassport function from passport-config.js
 const initializePassport = require('./passport-config')
+// Initialize passport by passing the passport object and two callback functions for finding a user by email and by id
 initializePassport(
   passport,
   email => users.find(user => user.email === email),
@@ -52,35 +60,16 @@ app.use(methodOverride('_method'))
 
 // Importing the fitRoutes module and using it as middleware
 const router = require('./routes/fitRoutes');
-
-//{ alertMessage: 'You need to login' }
-// Conditional Logic for authenticating views (IF LOGGED IN Render home_auth ELSE Render home_notauth)
-// app.get('/', (req, res) => {
-//   if (req.isAuthenticated()) {
-//       res.render('index', { name: req.user.name })
-//   } else {
-//       res.render('login')// MAKE A HOMEPAGE
-//   }
-// })
-// app.get('/', (req, res) => {
-//   console.log('Entry Point');
-//   if (req.isAuthenticated()) {
-//     const templateData = {
-//       authenticated: req.isAuthenticated(),
-//       name: req.user ? req.user.name : null
-//     };
-//     res.render('index', templateData);
-//   } else {
-//     res.redirect("/login")// MAKE A HOMEPAGE
-//   }
-// })
-
+// This middleware sets the authenticated variable and user name variable on 
 app.use(function(req, res, next) {
   res.locals.authenticated = req.isAuthenticated();
   res.locals.name = req.user ? req.user.name : null;
   next();
 });
 
+/* This is a route for the entry point of the web application. 
+If the user is authenticated, it will render the index page.
+Otherwise, it will redirect to the login page*/
 app.get('/', (req, res) => {
   console.log('Entry Point');
   if (req.isAuthenticated()) {
@@ -140,24 +129,27 @@ app.delete("/logout", (req, res, next) => {
       res.redirect("/login");
     });
 });
-
+// This function checks if a user is authenticated or not. If the user is authenticated, it allows access to the requested page.
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next()
     }
+    // If the user is not authenticated, it sets a flash message and redirects to the login page.
     req.flash('error', 'Please login to access this page.');
     res.redirect('/login')
 }
-  
+// This function checks if a user is not authenticated. If the user is not authenticated, it allows access to the requested page.
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return res.redirect('/')
     }
+    // If the user is authenticated, it allows the user to proceed to the requested page.
     next()
 }
 
 app.use('/', router); 
 
+//IF RUNNING LOCALHOST PORT WILL BE 3000 but if hosted it will be the env variable AUTO SET BY HEROKU
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

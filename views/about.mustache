@@ -9,20 +9,93 @@
  -->
  <html>
     <style>
-        head {text-align: center;}
-        h1 {text-align: center;}
-        p {text-align: center;}
-        div {text-align: center;}
+      head {
+        text-align: center;
+      }
+  
+      h1 {
+        text-align: center;
+      }
+  
+      p {
+        text-align: center;
+      }
+  
+      div {
+        text-align: center;
+      }
     </style>
+  
     <head>
-        {{>header}}
-        <link rel="stylesheet" href="style.css"/>
+      {{>header}}
+      <link rel="stylesheet" href="style.css" />
     </head>
     <div>
-        <a href="/" class="logo">
-            <img src="HappyHabitsLogo.png" alt="Happy Habits Logo">
-        </a>
-        <h1>About Happy Habits</h1>
-        <p>Welcome to our site. Replace the introductory paragraph with a brief description of your application and its main purpose, emphasizing how it helps users improve their sense of wellbeing.</p>  
+      <a href="/" class="logo">
+        <img src="HappyHabitsLogo.png" alt="Happy Habits Logo">
+      </a>
+      <h1>About Happy Habits</h1>
     </div>
-</html>
+  
+    <body class="body">
+      <h1>HappyHabits Wellbeing Web Application</h1>
+      <p>Happy Habits recognizes that wellbeing is fundamental to human health and overall happiness. Developing a strong and well-adapted sense of wellbeing can help individuals overcome difficulties and achieve their goals. It also has important social benefits, improving educational attainment, economic productivity, social and family relationships, social cohesion, and overall quality of life.</p>
+      <p>The Happy Habits web application is designed to help users improve their wellbeing by providing information on nutrition, fitness, and healthy lifestyle choices. Eating a healthy balanced diet, getting enough sleep and exercise, and creating healthy habits are all essential for individuals to improve their wellbeing. Happy Habits allows users to set their own personal goals and track their progress, empowering them to take control of their own wellbeing journey.</p>
+      <h2>Project Overview</h2>
+      <p>This project involves the development of a web application that will enable users to find information about wellbeing and set themselves goals to help enhance their sense of wellbeing. Wellbeing is subjective and will be different for different people, so it is important that the application allows individuals to set their own goals. It is also important that users know that the application will secure their data and ensure their privacy.</p>
+      <h3>Features</h3>
+      <p>The application should allow the users to do the following:</p>
+      <ul>
+        <li>Anyone should be able to browse to the site and view an About Us page with information about the application.</li>
+        <li>Individuals should be able to register for the application.</li>
+        <ul>
+          <li>Registered users should be able to login and:</li>
+          <li>view information about nutrition, fitness, and a healthy lifestyle.</li>
+          <li>define a series of personal goals in each category (nutrition, fitness, healthy lifestyle).</li>
+          <li>add, remove, and modify their own personal goals for several weeks ahead.</li>
+          <li>record the achievement of their own personal goals when they occur (e.g. goals can be ticked off or actual times or number of repetitions can be recorded).</li>
+          <li>review a history of their own personal achievements.</li>
+        </ul>
+      </ul>
+      <h3>Additional Features</h3>
+      <p>You may choose to add additional, relevant features which are not specified above. If your application extends the specification you should highlight and justify the additional features in your final submission.</p>
+      <h2>Development Tools</h2>
+      <p>The application should be developed using Node.js and Express with NeDB used to store information. It is expected that Mustache templates will be used, however another approach to developing the user interface would be acceptable if appropriate justification is provided.</p>
+      <h2>Getting Started</h2>
+      <h3>Prerequisites</h3>
+      <p>Before you begin, ensure you have met the following requirements:</p>
+      <ul>
+        <li>You have installed the latest version of Node.js and npm.</li>
+        <li>You have installed NeDB.</li>
+        <li>You have installed Express.</li>
+        <li>You have installed Mustache.</li>
+      </ul>
+      <h3>Installation</h3>
+  
+      <p>To install this application, follow these steps:</p>
+  
+      <ol>
+        <li>Clone the repository to your local machine.</li>
+        <li>Navigate to the project root directory.</li>
+        <li>Install the required dependencies using <code>npm install</code>.</li>
+      </ol>
+  
+      <h3>Usage</h3>
+  
+      <p>To run the application, follow these steps:</p>
+  
+      <ol>
+        <li>Navigate to the project root directory.</li>
+        <li>Start the application using <code>npm start</code>.</li>
+        <li>Open your web browser and go to <code>http://localhost:3000</code> to access the application.</li>
+      </ol>
+  
+      <h2>About Us</h2>
+  
+      <p>Created by Peter Kemley for Web Application Development 2 CourseWork</p>
+  
+      <h2>License</h2>
+  
+      <p>This project is licensed under the MIT License - see the <code>LICENSE</code> file for details.</p>
+  
+  </html>
