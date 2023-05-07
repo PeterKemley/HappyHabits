@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     res.render('index');
   } else {
-    res.redirect("/login")// MAKE A HOMEPAGE
+    res.render('index');// MAKE A HOMEPAGE
   }
 })
 
