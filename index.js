@@ -45,6 +45,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
@@ -56,15 +57,24 @@ const router = require('./routes/fitRoutes');
 app.get('/home', checkAuthenticated, (req, res) => {
   res.render('index', { name: req.user.name })
 })
- //{ alertMessage: 'You need to login' }
+
+//{ alertMessage: 'You need to login' }
 // Conditional Logic for authenticating views (IF LOGGED IN Render home_auth ELSE Render home_notauth)
 // app.get('/', (req, res) => {
 //   if (req.isAuthenticated()) {
-//       res.render('entries', { name: req.user.name })
+//       res.render('index', { name: req.user.name })
 //   } else {
-//       res.render('homepage')// MAKE A HOMEPAGE
+//       res.render('login')// MAKE A HOMEPAGE
 //   }
 // })
+app.get('/', (req, res) => {
+  console.log('Entry Point');
+  if (req.isAuthenticated()) {
+    res.redirect("/home", { name: req.user.name })
+  } else {
+    res.redirect("/login")// MAKE A HOMEPAGE
+  }
+})
 
 // GET '/login' - renders the 'login' view if the user is not authenticated, otherwise redirects to the home page
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -97,7 +107,8 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     } catch (err){
       console.log('Registration Failed')
       console.error(err)
-      res.render('register', { message: 'Error registering user. Please try again.' })
+      req.flash('error', 'Error registering user. Please try again.');
+      res.render('register')
     }
 })
 

@@ -1,7 +1,8 @@
 // Importing the express module and creating a router object
 const express = require('express');
 const router = express.Router();
-
+const flash = require('express-flash')
+router.use(flash())
 // Importing the fitController module for handling requests
 const controller = require('../controllers/fitController.js');
 
@@ -31,17 +32,36 @@ router.get('/about', function(req, res) {
 })
 
 // Route for the new entry page
+// Route for the fitness goals page
+const checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      console.log('user authenticated');
+      next();
+    } else {
+      console.log('user not authenticated');
+      req.flash('error', 'Please login to access this page.');
+      res.redirect("/login");
+    }
+  }
+
 router.get('/new', controller.new_goals);
 router.post('/new', controller.post_new_entry);
 
-// Route for the fitness goals page
-// router.get('/fitness', controller.fitness_page);
-router.get('/lifestyle', controller.lifestyle_page);
-router.get('/nutrition', controller.nutrition_page);
+router.get('/fitness', checkAuthenticated, controller.fitness_page)
+router.get('/lifestyle', checkAuthenticated, controller.lifestyle_page);
+router.get('/nutrition', checkAuthenticated, controller.nutrition_page);
+router.get('/completed-goals', checkAuthenticated, controller.completed_goals);
+router.get('/notcompleted-goals', checkAuthenticated, controller.notcompleted_goals);
 
-// Route for the Completed Goals page
-router.get('/completed-goals', controller.completed_goals);
-router.get('/notcompleted-goals', controller.notcompleted_goals);
+// (req, res) => {
+//     if (req.isAuthenticated()) {
+//         console.log('user authenticated');
+//         router.get('/fitness', controller.fitness_page);
+//     } else {
+//         console.log('user not authenticated');
+//         res.redirect("/login")// MAKE A HOMEPAGE
+//     }
+//   })
 
 // Route for handling 404 errors
 router.use(function(req, res) {

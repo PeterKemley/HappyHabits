@@ -6,6 +6,9 @@
 <body>
 <div class="container">
 <h2>Registration</h2>
+{{#messages.error}}
+<div class="alert alert-danger" role="alert">{{messages.error}}</div>
+{{/messages.error}}
     <form action="/register" method="post" role="form">
         <div>
             <label for="name">Name</label>

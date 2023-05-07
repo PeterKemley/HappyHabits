@@ -1,13 +1,11 @@
-
-<!-- <% if (messages.error) { %>
-  <%= messages.error %>
-<% } %> -->
 <html>
 <head>
     {{>header}}
-    {{>bubble}}
 </head>
 <body>
+  {{#messages.error}}
+  <div class="alert alert-danger" role="alert">{{messages.error}}</div>
+  {{/messages.error}}
 <div class="container">
 <h2>Login</h2>
     <form action="/login" method="POST" role="form">
