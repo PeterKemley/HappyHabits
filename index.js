@@ -53,11 +53,6 @@ app.use(methodOverride('_method'))
 // Importing the fitRoutes module and using it as middleware
 const router = require('./routes/fitRoutes');
 
-// GET '/home' - renders the 'index' view if the user is authenticated, otherwise redirects to the login page
-app.get('/home', checkAuthenticated, (req, res) => {
-  res.render('index', { name: req.user.name })
-})
-
 //{ alertMessage: 'You need to login' }
 // Conditional Logic for authenticating views (IF LOGGED IN Render home_auth ELSE Render home_notauth)
 // app.get('/', (req, res) => {
@@ -67,13 +62,37 @@ app.get('/home', checkAuthenticated, (req, res) => {
 //       res.render('login')// MAKE A HOMEPAGE
 //   }
 // })
+// app.get('/', (req, res) => {
+//   console.log('Entry Point');
+//   if (req.isAuthenticated()) {
+//     const templateData = {
+//       authenticated: req.isAuthenticated(),
+//       name: req.user ? req.user.name : null
+//     };
+//     res.render('index', templateData);
+//   } else {
+//     res.redirect("/login")// MAKE A HOMEPAGE
+//   }
+// })
+
+app.use(function(req, res, next) {
+  res.locals.authenticated = req.isAuthenticated();
+  res.locals.name = req.user ? req.user.name : null;
+  next();
+});
+
 app.get('/', (req, res) => {
   console.log('Entry Point');
   if (req.isAuthenticated()) {
-    res.redirect("/home", { name: req.user.name })
+    res.render('index');
   } else {
     res.redirect("/login")// MAKE A HOMEPAGE
   }
+})
+
+// GET '/home' - renders the 'index' view if the user is authenticated, otherwise redirects to the login page
+app.get('/home', (req, res) => {
+  res.render('index')
 })
 
 // GET '/login' - renders the 'login' view if the user is not authenticated, otherwise redirects to the home page
@@ -83,7 +102,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
 
 // POST '/login' - authenticates the user using Passport.js and redirects to the 'index' page if successful, otherwise redirects to the login page with a flash message
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/home',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
 }))
