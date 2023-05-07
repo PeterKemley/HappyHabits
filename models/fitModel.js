@@ -18,60 +18,141 @@ class Fitness {
     init() {
         this.db.insert([
             {
-                goalName: 'Lose 20kg',
-                description: 'Noice',
-                category: "Fitness",
-                startDate: '2020-02-16',
-                endDate: '2025-02-16',
-                complete: "Completed",
-                published: "2020-01-16"
+              goalName: 'Eat 5 servings of fruits and vegetables daily',
+              description: 'Aim to eat at least 5 servings of fruits and vegetables every day for better health.',
+              category: 'Nutrition',
+              startDate: '2022-05-01',
+              endDate: '2022-05-31',
+              complete: 'Not Yet Completed',
+              published: '2022-04-30'
             },
             {
-                goalName: 'Gym Twice a Week',
-                description: 'Noice',
-                category: "Lifestyle",
-                startDate: '2020-02-16',
-                endDate: '2025-02-16',
-                complete: "Not Yet Completed",
-                published: "2020-01-16"
+              goalName: 'Reduce sugar intake',
+              description: 'Limit added sugars to less than 10% of daily calorie intake.',
+              category: 'Nutrition',
+              startDate: '2022-06-01',
+              endDate: '2022-06-30',
+              complete: 'Completed',
+              published: '2022-05-31'
             },
             {
-                goalName: 'Eat KFC',
-                description: 'Noice',
-                category: "Nutrition",
-                startDate: '2020-02-16',
-                endDate: '2025-02-16',
-                complete: "Completed",
-                published: "2020-01-16"
+              goalName: 'Try a new healthy recipe each week',
+              description: 'Experiment with new recipes to find healthier options that you enjoy.',
+              category: 'Nutrition',
+              startDate: '2022-07-01',
+              endDate: '2022-07-31',
+              complete: 'Not Yet Completed',
+              published: '2022-06-30'
             },
             {
-                goalName: 'Gym',
-                description: 'Noice',
-                category: "Nutrition",
-                startDate: '2020-02-16',
-                endDate: '2025-02-16',
-                complete: "Completed",
-                published: "2020-01-16"
+              goalName: 'Spend more time outdoors',
+              description: 'Make a conscious effort to spend more time outside and in nature.',
+              category: 'Lifestyle',
+              startDate: '2022-05-01',
+              endDate: '2022-05-31',
+              complete: 'Completed',
+              published: '2022-04-30'
             },
             {
-                goalName: 'Lose 20kg',
-                description: 'Noice',
-                category: "Fitness",
-                startDate: '2020-02-16',
-                endDate: '2025-02-16',
-                complete: "Not Yet Completed",
-                published: "2020-01-16"
+              goalName: 'Meditate for 10 minutes daily',
+              description: 'Set aside 10 minutes each day to practice mindfulness and meditation.',
+              category: 'Lifestyle',
+              startDate: '2022-06-01',
+              endDate: '2022-06-30',
+              complete: 'Not Yet Completed',
+              published: '2022-05-31'
             },
             {
-                goalName: 'Gym',
-                description: 'Noice',
-                category: "Nutrition",
-                startDate: '2020-02-16',
-                endDate: '2025-02-16',
-                complete: "Not Yet Completed",
-                published: "2020-01-16"
-            }
-        ]);
+              goalName: 'Practice yoga twice a week',
+              description: 'Incorporate yoga into your fitness routine by practicing twice a week.',
+              category: 'Lifestyle',
+              startDate: '2022-07-01',
+              endDate: '2022-07-31',
+              complete: 'Completed',
+              published: '2022-06-30'
+            },
+            {
+              goalName: 'Run a 5K in under 30 minutes',
+              description: 'Train to run a 5K race and aim to finish in under 30 minutes.',
+              category: 'Fitness',
+              startDate: '2022-05-01',
+              endDate: '2022-05-31',
+              complete: 'Not Yet Completed',
+              published: '2022-04-30'
+            },
+            {
+              goalName: 'Strength train twice a week',
+              description: 'Incorporate strength training into your fitness routine by lifting weights twice a week.',
+              category: 'Fitness',
+              startDate: '2022-06-01',
+              endDate: '2022-06-30',
+              complete: 'Not Yet Completed',
+              published: '2022-05-31'
+            },
+            {
+              goalName: 'Increase flexibility',
+              description: 'Incorporate stretching and yoga into your routine to increase flexibility.',
+              category: 'Fitness',
+              startDate: '2022-07-01',
+              endDate: '2022-07-31',
+              complete: 'Not Yet Completed',
+              published: '2022-06-30'
+            },
+            {
+                goalName: 'Meditate for 10 minutes daily',
+                description: 'Practice daily mindfulness and relaxation',
+                category: 'Lifestyle',
+                startDate: '2022-01-01',
+                endDate: '2022-12-31',
+                complete: 'Not Yet Completed',
+                published: '2022-01-01'
+              },
+              {
+                goalName: 'Drink 2 liters of water daily',
+                description: 'Improve hydration and overall health',
+                category: 'Nutrition',
+                startDate: '2022-01-01',
+                endDate: '2022-12-31',
+                complete: 'Not Yet Completed',
+                published: '2022-01-01'
+              },
+              {
+                goalName: 'Run a 10k',
+                description: 'Train and participate in a 10k race',
+                category: 'Fitness',
+                startDate: '2022-01-01',
+                endDate: '2022-06-30',
+                complete: 'Not Yet Completed',
+                published: '2022-01-01'
+              },
+              {
+                goalName: 'Read 20 books',
+                description: 'Expand knowledge and improve reading habit',
+                category: 'Lifestyle',
+                startDate: '2022-01-01',
+                endDate: '2022-12-31',
+                complete: 'Not Yet Completed',
+                published: '2022-01-01'
+              },
+              {
+                goalName: 'Eat a salad every day for a month',
+                description: 'Improve nutrition and increase vegetable intake',
+                category: 'Nutrition',
+                startDate: '2022-05-01',
+                endDate: '2022-05-31',
+                complete: 'Not Yet Completed',
+                published: '2022-05-01'
+              },
+              {
+                goalName: 'Do 100 push-ups in a day',
+                description: 'Build strength and endurance',
+                category: 'Fitness',
+                startDate: '2022-01-01',
+                endDate: '2022-06-30',
+                complete: 'Not Yet Completed',
+                published: '2022-01-01'
+              }
+          ]);
     }
     
     //a function to return all entries from the database
@@ -93,7 +174,7 @@ class Fitness {
             })
         })
     }
-
+    //a function to return all fitness entries from the database
     getFitnessGoals() {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
@@ -112,7 +193,7 @@ class Fitness {
             })
         })
     }
-
+    //a function to return all nutrition entries from the database
     getNutritionGoals() {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
@@ -131,7 +212,7 @@ class Fitness {
             })
         })
     }
-
+    //a function to return all lifestyle entries from the database
     getLifestyleGoals() {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
@@ -150,7 +231,7 @@ class Fitness {
             })
         })
     }
-
+    //a function to return all completed entries from the database
     getCompletedGoals() {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
@@ -169,7 +250,7 @@ class Fitness {
             })
         })
     }
-
+    //a function to return all non completed entries from the database
     getNotCompletedGoals() {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
@@ -188,7 +269,7 @@ class Fitness {
             })
         })
     }
-
+    //a function to add a goal entry to the database
     addEntry(goalName, description, category, startDate, endDate, complete) {
         var entry = { 
                 goalName: goalName,
@@ -208,7 +289,7 @@ class Fitness {
                 }
         }) 
      }
-
+     //a function to delete a goal entry in the database
      deleteGoal(_id) {
         //return a Promise object, which can be resolved or rejected
         return new Promise((resolve, reject) => {
